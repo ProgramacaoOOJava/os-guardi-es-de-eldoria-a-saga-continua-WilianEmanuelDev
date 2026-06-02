@@ -1,58 +1,41 @@
-package eldoria;
+// Classe base para todos os personagens do reino de Eldoria
+public abstract class Personagem {
 
-import java.util.Objects;
+    private String nome;
+    private String classe;
+    private int    nivel;
+    private int    pontosDeVida;
+    private double poderBase;
 
-/**
- * Classe base para representar personagens do reino de Eldoria.
- * Aplica conceitos de encapsulamento, herança e polimorfismo.
- */
-public class abstract Personagem {
-    // Atributos privados (encapsulamento)
+    public Personagem(String nome, String classe, int nivel, int pontosDeVida, double poderBase) {
+        this.nome         = nome;
+        this.classe       = classe;
+        this.nivel        = nivel;
+        this.pontosDeVida = pontosDeVida;
+        this.poderBase    = poderBase;
+    }
 
+    // Cada subclasse define sua própria habilidade
+    public abstract void usarHabilidade();
 
-    // * Construtor que inicializa todos os atributos do personagem.
+    // Exibe os dados formatados do personagem
+    public void exibirStatus() {
+        System.out.println("------------------------------");
+        System.out.println("Nome          : " + nome);
+        System.out.println("Classe        : " + classe);
+        System.out.println("Nível         : " + nivel);
+        System.out.println("Pontos de Vida: " + pontosDeVida);
+        System.out.println("Poder Base    : " + poderBase);
+        System.out.println("------------------------------");
+    }
+
+    // Visível apenas para subclasses — concede bônus ao poder base
+    protected void atribuirBencao(double valor) {
+        poderBase += valor;
+        System.out.println("Bênção concedida! Novo poder base: " + poderBase);
+    }
 
     // Getters
-
-    // Setters com validações
-
-    // * Criar métodos que define os pontos de vida do personagem.
-
-
-    /**
-     * Criar método que define a habilidade do personagem.
-     * Deve ser sobrescrito pelas subclasses para implementar comportamentos específicos.
-     */
-
-
-
-    /**
-     * Sobrescrita do método toString() para exibir informações do personagem.
-     * @return String formatada com todos os atributos do personagem
-     */
-    @Override
-    public String toString() {
-
-    }
-
-    /**
-     * Sobrescrita do método equals() para comparar personagens.
-     * Dois personagens são considerados iguais se tiverem o mesmo nome e classe.
-     * @param obj Objeto a ser comparado
-     * @return true se os personagens forem iguais, false caso contrário
-     */
-    @Override
-    public boolean equals(Object obj) {
-
-    }
-
-    /**
-     * Sobrescrita do método hashCode() para ser consistente com equals().
-     * @return Código hash baseado no nome e classe
-     */
-    @Override
-    public int hashCode() {
-
-    }
+    public String getNome()      { return nome; }
+    public double getPoderBase() { return poderBase; }
 }
-
